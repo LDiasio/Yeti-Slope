@@ -43,8 +43,8 @@ func _physics_process(delta):
 	$ParallaxBackground/ParallaxLayer3.motion_offset.x -= (scroll_speed + 3) * delta
 	$ParallaxBackground/ParallaxLayer2.motion_offset.x -= (scroll_speed + 4) * delta
 	
-	if Input.is_action_just_pressed("esc"):
-		get_tree().quit()
+	#if Input.is_action_just_pressed("esc"):
+	#	get_tree().quit()
 	
 	#cursor.position = get_global_mouse_position()
 	#if Input.is_action_just_pressed("click"):

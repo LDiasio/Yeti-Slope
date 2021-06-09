@@ -17,6 +17,11 @@ animations = [ {
 "name": "Idle",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Trick1",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Trick4",
@@ -27,24 +32,18 @@ animations = [ {
 "name": "Trick2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "Trick3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Trick1",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Trick5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Trick3",
 "speed": 5.0
 } ]
 
 [node name="YetiSprite" type="AnimatedSprite"]
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 2
 playing = true

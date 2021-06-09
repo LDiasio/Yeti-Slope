@@ -38,10 +38,11 @@ func _ready():
 	transition_tween.start()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("esc"):
-		if !ended:
-			ended = true
-			end()
+	pass
+	#if Input.is_action_just_pressed("esc"):
+	#	if !ended:
+	#		ended = true
+	#		end()
 
 func _on_SpawnObstacleTimer_timeout():
 	var kind_of_obstacle = round(rand_range(0,10))
@@ -81,7 +82,7 @@ func spawn_flag():
 	new_flag.owner = flags
 
 func increase_speed():
-	if global_speed < 250:
+	if global_speed < 300:
 		global_speed *= 1.01
 		obstacles_timer.wait_time *= 0.99
 		flags_timer.wait_time *= 0.99

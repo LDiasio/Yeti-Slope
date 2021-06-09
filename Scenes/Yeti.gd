@@ -106,6 +106,9 @@ func _physics_process(delta):
 	food_container.global_rotation = 0
 	food_container.global_scale = Vector2(1,1)
 	
+	if !alive:
+		velocity.y = 0
+	
 	tricks()
 	movement(delta)
 	jump(delta)
@@ -369,14 +372,21 @@ func trick_complete():
 	trick_completed = true
 	perform_trick_player.play("Push")
 	set_between_frame()
-	sprite.play("Idle")
-	
+	if sprite.animation != "Trick3":
+		if health < max_health:
+			health += 1
+		if health >= max_health:
+			health = max_health
+	elif sprite.animation == "Trick3":
+		if health < max_health:
+			health += 2
+		if health >= max_health:
+			health = max_health
+			
 	tricks_count += 1
-	if health < max_health:
-		health += 1
-	if health >= max_health:
-		health = max_health
 	get_tree().call_group("gui", "update_health", health)
+	
+	sprite.play("Idle")
 
 func _on_TrickPlayer_animation_finished(_anim_name):
 	trick = IDLE
@@ -404,7 +414,7 @@ func _on_BetweenFrameTimer_timeout():
 ###########################################################
 
 func _on_DamageArea_area_entered(area):
-	if area.is_in_group("obstacles"):
+	if area.is_in_group("obstacles") and alive:
 		var obstacle = area.get_parent().get_parent().get_parent().get_parent()
 		get_damage()
 		if obstacle.kind == 0:
@@ -417,7 +427,7 @@ func _on_DamageArea_area_entered(area):
 		health_damage(1)
 		#emit_signal("update_gui_health",-1)
 		#hit_sound.play()
-	elif area.is_in_group("bears"):
+	elif area.is_in_group("bears") and alive:
 		var bear = area.get_parent().get_parent().get_parent().get_parent()
 		var new_impact = (bear.position - position).normalized() * bear.impact
 		get_bear_damage(new_impact)
@@ -427,7 +437,7 @@ func _on_DamageArea_area_entered(area):
 		bounce_sound()
 		bear_sound()
 		#hit_sound.play()
-	elif area.is_in_group("humans"):
+	elif area.is_in_group("humans") and alive:
 		var new_human = area.get_parent()
 		new_human.eat()
 		roar_sound()
@@ -436,7 +446,7 @@ func _on_DamageArea_area_entered(area):
 			male_cry_sound()
 		elif rand_cry == 1:
 			female_sound()
-	elif area.is_in_group("flag"):
+	elif area.is_in_group("flag") and alive:
 		health_damage(1)
 		bounce_damage(150)
 		

@@ -28,7 +28,7 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.110465, 3.81818 ), 0.0, 0.
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0.0465116, 0.726136 ), 0.0, 0.0, 0, 0, Vector2( 0.877907, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Eat"
 length = 0.3
 tracks/0/type = "value"
@@ -44,8 +44,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.02, 1.02 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Health"
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -284,7 +283,7 @@ custom_fonts/font = ExtResource( 12 )
 text = "0"
 
 [node name="HumansPlayer" type="AnimationPlayer" parent="GUI/VBoxContainer/HBoxContainer"]
-anims/Eat = SubResource( 5 )
+anims/Eat = SubResource( 4 )
 
 [node name="HealthContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 23.0
@@ -313,7 +312,7 @@ custom_fonts/font = ExtResource( 12 )
 text = "10"
 
 [node name="HealthPlayer" type="AnimationPlayer" parent="GUI/VBoxContainer/HealthContainer"]
-anims/Health = SubResource( 4 )
+anims/Health = SubResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 position = Vector2( 160, 90 )
