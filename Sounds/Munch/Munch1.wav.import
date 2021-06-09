@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Munch1.wav-90bd4b9fb7ca2cb427e78c009a4097b2.sample"
+
+[deps]
+
+source_file="res://Sounds/Munch/Munch1.wav"
+dest_files=[ "res://.import/Munch1.wav-90bd4b9fb7ca2cb427e78c009a4097b2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

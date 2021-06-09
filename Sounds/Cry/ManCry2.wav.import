@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ManCry2.wav-4130ae18ea468f580d72a19f4de7fa59.sample"
+
+[deps]
+
+source_file="res://Sounds/Cry/ManCry2.wav"
+dest_files=[ "res://.import/ManCry2.wav-4130ae18ea468f580d72a19f4de7fa59.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

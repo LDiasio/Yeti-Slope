@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Angle.wav-29ecb258c42714bd787ce95e40e8f3a3.sample"
+
+[deps]
+
+source_file="res://Sounds/Tricks/Angle.wav"
+dest_files=[ "res://.import/Angle.wav-29ecb258c42714bd787ce95e40e8f3a3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

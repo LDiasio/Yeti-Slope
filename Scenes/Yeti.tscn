@@ -1,0 +1,719 @@
+[gd_scene load_steps=58 format=2]
+
+[ext_resource path="res://YetiScenes/YetiSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Yeti.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/Munch/Munch1.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Munch/Munch3.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Jump/Jump1.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/Jump/Jump2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/Land/Land3.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/Land/Land1.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/Land/Land2.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Munch/Munch2.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Jump/Jump3.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/Crushs/Crush3.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/Bounce/Bounce1.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sounds/Crushs/Crush2.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sounds/Roars/Roar5.wav" type="AudioStream" id=16]
+[ext_resource path="res://Sounds/Crushs/Crush1.wav" type="AudioStream" id=17]
+[ext_resource path="res://Sounds/Roars/Roar2.wav" type="AudioStream" id=18]
+[ext_resource path="res://Sounds/Roars/Roar4.wav" type="AudioStream" id=19]
+[ext_resource path="res://Sounds/Roars/Roar1.wav" type="AudioStream" id=20]
+[ext_resource path="res://Sounds/Roars/Roar3.wav" type="AudioStream" id=21]
+[ext_resource path="res://Sounds/Cry/ManCry2.wav" type="AudioStream" id=22]
+[ext_resource path="res://Sounds/Cry/ManCry3.wav" type="AudioStream" id=23]
+[ext_resource path="res://Sounds/Cry/Cry2.wav" type="AudioStream" id=24]
+[ext_resource path="res://Sounds/Cry/Cry1.wav" type="AudioStream" id=25]
+[ext_resource path="res://Sounds/Cry/Cry3.wav" type="AudioStream" id=26]
+[ext_resource path="res://Sounds/Rock/Rock1.wav" type="AudioStream" id=27]
+[ext_resource path="res://Sounds/Rock/Rock2.wav" type="AudioStream" id=28]
+[ext_resource path="res://Sounds/Rock/Rock3.wav" type="AudioStream" id=29]
+[ext_resource path="res://Sounds/Tree/Tree1.wav" type="AudioStream" id=30]
+[ext_resource path="res://Sounds/Bounce/Bounce2.wav" type="AudioStream" id=31]
+[ext_resource path="res://Sounds/Bear/Bear1.wav" type="AudioStream" id=32]
+[ext_resource path="res://Sounds/Bear/Bear2.wav" type="AudioStream" id=33]
+[ext_resource path="res://Sounds/Bear/Bear3.wav" type="AudioStream" id=34]
+[ext_resource path="res://Sounds/Tree/Tree3.wav" type="AudioStream" id=35]
+[ext_resource path="res://Sounds/Snowman/Snowman1.wav" type="AudioStream" id=36]
+[ext_resource path="res://Sounds/Snowman/Snowman2.wav" type="AudioStream" id=37]
+[ext_resource path="res://Sounds/Tree/Tree2.wav" type="AudioStream" id=38]
+[ext_resource path="res://Sounds/Cry/ManCry1.wav" type="AudioStream" id=39]
+[ext_resource path="res://Sounds/Avalanche/Avalanche.wav" type="AudioStream" id=40]
+[ext_resource path="res://Sounds/SnowCarving/Snow.wav" type="AudioStream" id=41]
+[ext_resource path="res://Sounds/Tricks/Rotate.wav" type="AudioStream" id=42]
+[ext_resource path="res://Sounds/Tricks/Upside.wav" type="AudioStream" id=43]
+[ext_resource path="res://Sounds/Tricks/Turn.wav" type="AudioStream" id=44]
+[ext_resource path="res://Sounds/Tricks/Angle.wav" type="AudioStream" id=45]
+[ext_resource path="res://Sounds/Tricks/Back.wav" type="AudioStream" id=46]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 3 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 16 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.6, 1.4 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, -2, -2 ),
+"update": 0,
+"values": [ 0.0, -10.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Angle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1 ),
+"transitions": PoolRealArray( 1, -2, 1, 0.5 ),
+"update": 0,
+"values": [ 0.0, -60.0, -60.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.6, 1 ),
+"transitions": PoolRealArray( 1, -2, 1, -2, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.7, 1.3 ), Vector2( 0.7, 1.3 ), Vector2( 0.9, 1.1 ), Vector2( 0.7, 1.3 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trick_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Back"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, -2, -2, 0.5 ),
+"update": 0,
+"values": [ 0.0, -5.0, 15.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5, 0.8, 1 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 0.6 ), Vector2( -0.9, 1.1 ), Vector2( -0.9, 1.1 ), Vector2( 1.2, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trick_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Rotate"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.8, 1 ),
+"transitions": PoolRealArray( 1, -2, 1, 0.5 ),
+"update": 0,
+"values": [ 0.0, -10.0, 370.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8, 1 ),
+"transitions": PoolRealArray( 1, -2, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.3, 0.7 ), Vector2( 0.8, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trick_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Turn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7, 1 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, 0.5 ),
+"update": 0,
+"values": [ 0.0, -20.0, 45.0, -30.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, -2, 1, -2, -2, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.4, 1 ), Vector2( 1, 1 ), Vector2( 0.2, 1 ), Vector2( 1, 1 ), Vector2( 0.4, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trick_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Upside"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7, 1 ),
+"transitions": PoolRealArray( 1, -2, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.0, 45.0, 45.0, -15.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, -2, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, -1 ), Vector2( 1.2, -0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trick_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Push"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Eat"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, -2, -2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.9, 1.1 ), Vector2( 1.1, 0.9 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Dead"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, -2, 1, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.7, 1.3 ), Vector2( 1, 1 ), Vector2( 1.3, 0.7 ) ]
+}
+
+[node name="Yeti" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="JumpSkin" type="Node2D" parent="."]
+
+[node name="IdleSkin" type="Node2D" parent="JumpSkin"]
+scale = Vector2( 0.95, 1.05 )
+
+[node name="EatSkin" type="Node2D" parent="JumpSkin/IdleSkin"]
+
+[node name="DamageSkin" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin"]
+
+[node name="AngleSkin" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin"]
+
+[node name="TricksFix" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin"]
+position = Vector2( 0, -14 )
+
+[node name="Tricks" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix"]
+
+[node name="DeadNode" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks"]
+
+[node name="YetiSprite" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode" instance=ExtResource( 1 )]
+position = Vector2( 0, -2 )
+frame = 3
+
+[node name="BetweenYetiSprite" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode" instance=ExtResource( 1 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 0, -2 )
+playing = false
+
+[node name="DamageArea" type="Area2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode"]
+position = Vector2( 0, 11.0476 )
+scale = Vector2( 0.95, 1.05 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="DamageCollision" type="CollisionShape2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode/DamageArea"]
+shape = SubResource( 1 )
+
+[node name="FoodContainer" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode"]
+position = Vector2( 1.05263, -6.95238 )
+scale = Vector2( 1.05263, 0.952381 )
+
+[node name="BloodNode" type="Node2D" parent="."]
+
+[node name="GroundCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -1, -16 )
+shape = SubResource( 2 )
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="IdlePlayer" type="AnimationPlayer" parent="Players"]
+autoplay = "Idle"
+anims/Idle = SubResource( 3 )
+
+[node name="DamagePlayer" type="AnimationPlayer" parent="Players"]
+anims/Damage = SubResource( 4 )
+
+[node name="TrickPlayer" type="AnimationPlayer" parent="Players"]
+anims/Angle = SubResource( 5 )
+anims/Back = SubResource( 6 )
+anims/Rotate = SubResource( 7 )
+anims/Turn = SubResource( 8 )
+anims/Upside = SubResource( 9 )
+
+[node name="PerformTrickPlayer" type="AnimationPlayer" parent="Players"]
+anims/Push = SubResource( 10 )
+
+[node name="EatPlayer" type="AnimationPlayer" parent="Players"]
+anims/Eat = SubResource( 11 )
+
+[node name="DeadPlayer" type="AnimationPlayer" parent="Players"]
+playback_speed = 1.5
+anims/Dead = SubResource( 12 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="TrailTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+autostart = true
+
+[node name="BetweenFrameTimer" type="Timer" parent="Timers"]
+wait_time = 0.05
+one_shot = true
+
+[node name="LeftTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="RightTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="UpTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="DownTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="RoarSounds" type="Node2D" parent="Sounds"]
+
+[node name="RoarSound1" type="AudioStreamPlayer" parent="Sounds/RoarSounds"]
+stream = ExtResource( 20 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="RoarSound2" type="AudioStreamPlayer" parent="Sounds/RoarSounds"]
+stream = ExtResource( 18 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="RoarSound3" type="AudioStreamPlayer" parent="Sounds/RoarSounds"]
+stream = ExtResource( 21 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="RoarSound4" type="AudioStreamPlayer" parent="Sounds/RoarSounds"]
+stream = ExtResource( 19 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="RoarSound5" type="AudioStreamPlayer" parent="Sounds/RoarSounds"]
+stream = ExtResource( 16 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="CrushSounds" type="Node2D" parent="Sounds"]
+
+[node name="CrushSound1" type="AudioStreamPlayer" parent="Sounds/CrushSounds"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="CrushSound2" type="AudioStreamPlayer" parent="Sounds/CrushSounds"]
+stream = ExtResource( 15 )
+bus = "Effects"
+
+[node name="CrushSound3" type="AudioStreamPlayer" parent="Sounds/CrushSounds"]
+stream = ExtResource( 13 )
+bus = "Effects"
+
+[node name="MunchSounds" type="Node2D" parent="Sounds"]
+
+[node name="MunchSound1" type="AudioStreamPlayer" parent="Sounds/MunchSounds"]
+stream = ExtResource( 4 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="MunchSound2" type="AudioStreamPlayer" parent="Sounds/MunchSounds"]
+stream = ExtResource( 11 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="MunchSound3" type="AudioStreamPlayer" parent="Sounds/MunchSounds"]
+stream = ExtResource( 5 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="JumpSounds" type="Node2D" parent="Sounds"]
+
+[node name="JumpSound1" type="AudioStreamPlayer" parent="Sounds/JumpSounds"]
+stream = ExtResource( 6 )
+bus = "Effects"
+
+[node name="JumpSound2" type="AudioStreamPlayer" parent="Sounds/JumpSounds"]
+stream = ExtResource( 7 )
+bus = "Effects"
+
+[node name="JumpSound3" type="AudioStreamPlayer" parent="Sounds/JumpSounds"]
+stream = ExtResource( 12 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="LandSounds" type="Node2D" parent="Sounds"]
+
+[node name="LandSound1" type="AudioStreamPlayer" parent="Sounds/LandSounds"]
+stream = ExtResource( 9 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="LandSound2" type="AudioStreamPlayer" parent="Sounds/LandSounds"]
+stream = ExtResource( 10 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="LandSound3" type="AudioStreamPlayer" parent="Sounds/LandSounds"]
+stream = ExtResource( 8 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="Bounce" type="Node2D" parent="Sounds"]
+
+[node name="BounceSound1" type="AudioStreamPlayer" parent="Sounds/Bounce"]
+stream = ExtResource( 14 )
+volume_db = -2.0
+bus = "Effects"
+
+[node name="BounceSound2" type="AudioStreamPlayer" parent="Sounds/Bounce"]
+stream = ExtResource( 31 )
+volume_db = -2.0
+bus = "Effects"
+
+[node name="BearSound" type="Node2D" parent="Sounds"]
+
+[node name="BearSound1" type="AudioStreamPlayer" parent="Sounds/BearSound"]
+stream = ExtResource( 32 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="BearSound2" type="AudioStreamPlayer" parent="Sounds/BearSound"]
+stream = ExtResource( 33 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="BearSound3" type="AudioStreamPlayer" parent="Sounds/BearSound"]
+stream = ExtResource( 34 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="Rock" type="Node2D" parent="Sounds"]
+
+[node name="Rock1" type="AudioStreamPlayer" parent="Sounds/Rock"]
+stream = ExtResource( 27 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="Rock2" type="AudioStreamPlayer" parent="Sounds/Rock"]
+stream = ExtResource( 28 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="Rock3" type="AudioStreamPlayer" parent="Sounds/Rock"]
+stream = ExtResource( 29 )
+volume_db = 3.0
+bus = "Effects"
+
+[node name="Tree" type="Node2D" parent="Sounds"]
+
+[node name="Tree1" type="AudioStreamPlayer" parent="Sounds/Tree"]
+stream = ExtResource( 30 )
+volume_db = -2.0
+bus = "Effects"
+
+[node name="Tree2" type="AudioStreamPlayer" parent="Sounds/Tree"]
+stream = ExtResource( 38 )
+volume_db = -2.0
+bus = "Effects"
+
+[node name="Tree3" type="AudioStreamPlayer" parent="Sounds/Tree"]
+stream = ExtResource( 35 )
+volume_db = -2.0
+bus = "Effects"
+
+[node name="Snowman" type="Node2D" parent="Sounds"]
+
+[node name="Snowman1" type="AudioStreamPlayer" parent="Sounds/Snowman"]
+stream = ExtResource( 36 )
+volume_db = 5.0
+bus = "Effects"
+
+[node name="Snowman2" type="AudioStreamPlayer" parent="Sounds/Snowman"]
+stream = ExtResource( 37 )
+volume_db = 4.0
+bus = "Effects"
+
+[node name="MaleCry" type="Node2D" parent="Sounds"]
+
+[node name="MaleCry1" type="AudioStreamPlayer" parent="Sounds/MaleCry"]
+stream = ExtResource( 39 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="MaleCry2" type="AudioStreamPlayer" parent="Sounds/MaleCry"]
+stream = ExtResource( 22 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="MaleCry3" type="AudioStreamPlayer" parent="Sounds/MaleCry"]
+stream = ExtResource( 23 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="FemaleCry" type="Node2D" parent="Sounds"]
+
+[node name="FemaleCry1" type="AudioStreamPlayer" parent="Sounds/FemaleCry"]
+stream = ExtResource( 25 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="FemaleCry2" type="AudioStreamPlayer" parent="Sounds/FemaleCry"]
+stream = ExtResource( 24 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="FemaleCry3" type="AudioStreamPlayer" parent="Sounds/FemaleCry"]
+stream = ExtResource( 26 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="Avalanche" type="Node2D" parent="Sounds"]
+
+[node name="Avalanche" type="AudioStreamPlayer" parent="Sounds/Avalanche"]
+stream = ExtResource( 40 )
+autoplay = true
+bus = "Effects"
+
+[node name="Snow" type="Node2D" parent="Sounds"]
+
+[node name="Snow" type="AudioStreamPlayer" parent="Sounds/Snow"]
+stream = ExtResource( 41 )
+autoplay = true
+bus = "Effects"
+
+[node name="Tricks" type="Node2D" parent="Sounds"]
+
+[node name="AngleSound" type="AudioStreamPlayer" parent="Sounds/Tricks"]
+stream = ExtResource( 45 )
+volume_db = 2.0
+bus = "Effects"
+
+[node name="BackSound" type="AudioStreamPlayer" parent="Sounds/Tricks"]
+stream = ExtResource( 46 )
+volume_db = -1.0
+bus = "Effects"
+
+[node name="RotateSound" type="AudioStreamPlayer" parent="Sounds/Tricks"]
+stream = ExtResource( 42 )
+volume_db = 4.0
+bus = "Effects"
+
+[node name="TurnSound" type="AudioStreamPlayer" parent="Sounds/Tricks"]
+stream = ExtResource( 44 )
+volume_db = 2.0
+bus = "Effects"
+
+[node name="UpsideSound" type="AudioStreamPlayer" parent="Sounds/Tricks"]
+stream = ExtResource( 43 )
+volume_db = 1.0
+bus = "Effects"
+
+[node name="EndAvalancheTween" type="Tween" parent="."]
+
+[connection signal="area_entered" from="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode/DamageArea" to="." method="_on_DamageArea_area_entered"]
+[connection signal="animation_finished" from="Players/TrickPlayer" to="." method="_on_TrickPlayer_animation_finished"]
+[connection signal="timeout" from="Timers/TrailTimer" to="." method="_on_TrailTimer_timeout"]
+[connection signal="timeout" from="Timers/BetweenFrameTimer" to="." method="_on_BetweenFrameTimer_timeout"]
+[connection signal="timeout" from="Timers/LeftTimer" to="." method="_on_LeftTimer_timeout"]
+[connection signal="timeout" from="Timers/RightTimer" to="." method="_on_RightTimer_timeout"]
+[connection signal="timeout" from="Timers/UpTimer" to="." method="_on_UpTimer_timeout"]
+[connection signal="timeout" from="Timers/DownTimer" to="." method="_on_DownTimer_timeout"]

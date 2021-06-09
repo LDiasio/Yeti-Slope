@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bear2.wav-f4fe35e5b61ef264c4abce9a1870556f.sample"
+
+[deps]
+
+source_file="res://Sounds/Bear/Bear2.wav"
+dest_files=[ "res://.import/Bear2.wav-f4fe35e5b61ef264c4abce9a1870556f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

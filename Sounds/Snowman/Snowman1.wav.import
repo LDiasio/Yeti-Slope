@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Snowman1.wav-9cc1c695de7d1b5774dd00c407f519ca.sample"
+
+[deps]
+
+source_file="res://Sounds/Snowman/Snowman1.wav"
+dest_files=[ "res://.import/Snowman1.wav-9cc1c695de7d1b5774dd00c407f519ca.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

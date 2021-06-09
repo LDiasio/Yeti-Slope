@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cry3.wav-74fd3d3b328d57f01c9dee44dfd2a663.sample"
+
+[deps]
+
+source_file="res://Sounds/Cry/Cry3.wav"
+dest_files=[ "res://.import/Cry3.wav-74fd3d3b328d57f01c9dee44dfd2a663.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

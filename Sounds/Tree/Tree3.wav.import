@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Tree3.wav-ab49c7a15a1fdf8c75d3e6fc733d8167.sample"
+
+[deps]
+
+source_file="res://Sounds/Tree/Tree3.wav"
+dest_files=[ "res://.import/Tree3.wav-ab49c7a15a1fdf8c75d3e6fc733d8167.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
