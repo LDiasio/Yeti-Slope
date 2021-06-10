@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://YetiScenes/YetiSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Yeti.gd" type="Script" id=2]
@@ -52,20 +52,36 @@ extents = Vector2( 14, 3 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6, 16 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=13]
 resource_name = "Idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../JumpSkin/IdleSkin:scale")
+tracks/0/path = NodePath("../JumpSkin/IdleSkin/EatSkin/DamageSkin:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( -2, -2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.95, 1.05 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "IdleOld"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.95, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -363,6 +379,7 @@ tracks/1/keys = {
 }
 
 [node name="Yeti" type="KinematicBody2D"]
+scale = Vector2( 0.99, 1.01 )
 script = ExtResource( 2 )
 
 [node name="JumpSkin" type="Node2D" parent="."]
@@ -371,8 +388,10 @@ script = ExtResource( 2 )
 scale = Vector2( 0.95, 1.05 )
 
 [node name="EatSkin" type="Node2D" parent="JumpSkin/IdleSkin"]
+scale = Vector2( 1.1, 0.9 )
 
 [node name="DamageSkin" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin"]
+scale = Vector2( 0.97, 1.03 )
 
 [node name="AngleSkin" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin"]
 
@@ -382,9 +401,11 @@ position = Vector2( 0, -14 )
 [node name="Tricks" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix"]
 
 [node name="DeadNode" type="Node2D" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks"]
+rotation = -6.28319
 
 [node name="YetiSprite" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode" instance=ExtResource( 1 )]
 position = Vector2( 0, -2 )
+frame = 1
 
 [node name="BetweenYetiSprite" parent="JumpSkin/IdleSkin/EatSkin/DamageSkin/AngleSkin/TricksFix/Tricks/DeadNode" instance=ExtResource( 1 )]
 visible = false
@@ -413,10 +434,12 @@ position = Vector2( -1, -16 )
 shape = SubResource( 2 )
 
 [node name="Players" type="Node2D" parent="."]
+scale = Vector2( 0.95, 1.05 )
 
 [node name="IdlePlayer" type="AnimationPlayer" parent="Players"]
 autoplay = "Idle"
-anims/Idle = SubResource( 3 )
+anims/Idle = SubResource( 13 )
+anims/IdleOld = SubResource( 3 )
 
 [node name="DamagePlayer" type="AnimationPlayer" parent="Players"]
 anims/Damage = SubResource( 4 )

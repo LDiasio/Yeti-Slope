@@ -1,6 +1,7 @@
 extends Control
 
 onready var game_scene = preload("res://Scenes/Game.tscn")
+onready var cut_scene = preload("res://YetiScenes/Cutscene.tscn")
 
 var scroll_speed = 5
 onready var cursor = $Cursor
@@ -12,6 +13,7 @@ onready var button_sprite = $CenterContainer/ClickNode/SkinButton/ButtonSprite
 
 # Players
 onready var click_button_player = $CenterContainer/ClickNode/ClickButtonPlayer
+onready var cutscene_player = $CutsceneLabelNode/CutscenePlayer
 
 # Tweens
 onready var transition_tween = $TransitionTween
@@ -20,6 +22,7 @@ onready var music_tween = $MusicTween
 
 var on_button = false
 var clicked = false
+onready var cutscene_starting = false
 
 onready var white_rect = $WhiteRect
 
@@ -36,12 +39,22 @@ func _ready():
 		$Score/VBoxContainer/HumansEaten.text = "HUMANS EATEN: " + str(Memory.eaten)
 		$Score/VBoxContainer/Tricks.text = "TRICKS: " + str(Memory.tricks)
 		$Score.visible = true
+		$CutsceneLabelNode/CutsceneLabel.visible = false
 		
 func _physics_process(delta):
 	$ParallaxBackground/ParallaxLayer5.motion_offset.x -= (scroll_speed + 1) * delta
 	$ParallaxBackground/ParallaxLayer4.motion_offset.x -= (scroll_speed + 2) * delta
 	$ParallaxBackground/ParallaxLayer3.motion_offset.x -= (scroll_speed + 3) * delta
 	$ParallaxBackground/ParallaxLayer2.motion_offset.x -= (scroll_speed + 4) * delta
+	
+	if Input.is_action_pressed("cutscene") and Memory.played == false:
+		var cutscene_starting = true
+		$Timer2.start(0.7)
+		button_sound.play()
+		cutscene_player.play("CutsceneGrow")
+		start_tween.interpolate_property(white_rect, "modulate", white_rect.modulate, Color(1,1,1,1), 1,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+		music_tween.interpolate_property(music, "volume_db", music.volume_db, -80, 2,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+		
 	
 	#if Input.is_action_just_pressed("esc"):
 	#	get_tree().quit()
@@ -56,7 +69,7 @@ func _physics_process(delta):
 	#		button_sprite.play("On")
 	#		button_sound.play()
 	
-	if Input.is_action_just_pressed("enter") or Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("enter") or Input.is_action_just_pressed("jump") and cutscene_starting == false:
 		if !clicked:
 			clicked = true
 			click_button_player.play("Click")
@@ -88,3 +101,6 @@ func _on_ClickButtonPlayer_animation_finished(_anim_name):
 func _on_StartTween_tween_all_completed():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene_to(game_scene)
+
+func _on_Timer2_timeout():
+	get_tree().change_scene_to(cut_scene)

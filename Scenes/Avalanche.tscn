@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.414773 ), 0.0, 0.0, 0, 0, Vector2( 0.354651, 0.978409 ), -0.040614, -0.040614, 0, 0, Vector2( 0.761628, 0.7 ), 0.0, 0.0, 0, 0, Vector2( 0.976744, 0.0602273 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Avalanche" type="CPUParticles2D"]
+position = Vector2( -10.1384, 59.8082 )
+rotation = -0.174533
+amount = 44
+preprocess = 3.25
+speed_scale = 1.07
+explosiveness = 0.07
+randomness = 0.61
+lifetime_randomness = 0.13
+emission_shape = 2
+emission_rect_extents = Vector2( 7.177, 65.098 )
+direction = Vector2( 7.447, 1 )
+spread = 31.45
+gravity = Vector2( 1.191, 98 )
+initial_velocity = 56.53
+initial_velocity_random = 0.17
+angular_velocity = 180.11
+angular_velocity_random = 0.17
+orbit_velocity = 0.01
+orbit_velocity_random = 0.1
+scale_amount = 22.51
+scale_amount_curve = SubResource( 1 )
+hue_variation = -0.03
+hue_variation_random = 0.22

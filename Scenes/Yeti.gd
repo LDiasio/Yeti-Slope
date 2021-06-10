@@ -58,8 +58,8 @@ var acceleration = 400
 var local_speed : float = 100
 var velocity = Vector2.ZERO
 
-var health = 10
-var max_health = 10
+var health = 6
+var max_health = 6
 var alive = true
 
 # Jump
@@ -87,6 +87,8 @@ var end_screen = false
 
 var humans_eaten = 0
 var tricks_count = 0
+
+var trick_messed_up = false
 
 ######################################################
 ### CORE CYCLE ###
@@ -214,6 +216,9 @@ func jump(delta):
 			trick_completed = true
 			trick = IDLE
 			get_damage()
+			trick_messed_up = true
+			health_damage(1)
+	
 	
 	if abs(jump_velocity.y) != 0:
 		jump_skin.scale = lerp(jump_skin.scale, Vector2(0.7,1.3), 0.1)
@@ -246,6 +251,7 @@ func apply_movement(acceleration_amount):
 
 func tricks():
 	if (!on_floor and trick == IDLE and !trick_action and (jump_velocity.y <= 0 or jump_skin.position.y < 16) and Input.is_action_pressed("jump")) and alive:
+		trick_messed_up = false
 		if up_click:
 			up_click = false
 			trick = ANGLE
@@ -372,12 +378,12 @@ func trick_complete():
 	trick_completed = true
 	perform_trick_player.play("Push")
 	set_between_frame()
-	if sprite.animation != "Trick3":
+	if sprite.animation != "Trick3" and trick_messed_up == false:
 		if health < max_health:
 			health += 1
 		if health >= max_health:
 			health = max_health
-	elif sprite.animation == "Trick3":
+	elif sprite.animation == "Trick3" and trick_messed_up == false:
 		if health < max_health:
 			health += 2
 		if health >= max_health:
@@ -454,7 +460,7 @@ func get_damage():
 	damage_player.play("Damage")
 	camera.small_shake()
 	damage_skin.modulate = damage_color
-	
+
 	trick = IDLE
 	left_click = false
 	left_pressed = false

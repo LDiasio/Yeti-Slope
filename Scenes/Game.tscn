@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Yeti.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=2]
@@ -12,23 +12,14 @@
 [ext_resource path="res://Sprites/Background/Mountain4.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/ParallaxBackground.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Font.tres" type="DynamicFont" id=12]
-[ext_resource path="res://Sprites/GUI/LifebarFg.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/GUI/LifebarBg.png" type="Texture" id=14]
 [ext_resource path="res://Scenes/GUI.gd" type="Script" id=15]
 [ext_resource path="res://Sounds/TitleScreenDraft01.mp3" type="AudioStream" id=16]
+[ext_resource path="res://Scenes/Snowflakes.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Avalanche.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Sprites/GUI/HeartsCold.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/GUI/Hearts.png" type="Texture" id=20]
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.414773 ), 0.0, 0.0, 0, 0, Vector2( 0.354651, 0.978409 ), -0.040614, -0.040614, 0, 0, Vector2( 0.761628, 0.7 ), 0.0, 0.0, 0, 0, Vector2( 0.976744, 0.0602273 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=2]
-min_value = -20.0
-max_value = 20.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.110465, 3.81818 ), 0.0, 0.0, 0, 0, Vector2( 0.290698, -2 ), 0.0, 0.0, 0, 0, Vector2( 0.401163, 2 ), 0.0, 0.0, 0, 0, Vector2( 0.598837, -2 ), 0.0, 0.0, 0, 0, Vector2( 0.802326, 3.81818 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0.0465116, 0.726136 ), 0.0, 0.0, 0, 0, Vector2( 0.877907, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Eat"
 length = 0.3
 tracks/0/type = "value"
@@ -44,7 +35,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.02, 1.02 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -164,30 +155,7 @@ rotation = 1.49012e-08
 [node name="Yeti" parent="Bodies/YSort" instance=ExtResource( 1 )]
 position = Vector2( 48, 90 )
 
-[node name="Avalanche" type="CPUParticles2D" parent="Bodies"]
-position = Vector2( -10.1384, 59.8082 )
-rotation = -0.174533
-amount = 44
-preprocess = 3.25
-speed_scale = 1.07
-explosiveness = 0.07
-randomness = 0.61
-lifetime_randomness = 0.13
-emission_shape = 2
-emission_rect_extents = Vector2( 7.177, 65.098 )
-direction = Vector2( 7.447, 1 )
-spread = 31.45
-gravity = Vector2( 1.191, 98 )
-initial_velocity = 56.53
-initial_velocity_random = 0.17
-angular_velocity = 180.11
-angular_velocity_random = 0.17
-orbit_velocity = 0.01
-orbit_velocity_random = 0.1
-scale_amount = 22.51
-scale_amount_curve = SubResource( 1 )
-hue_variation = -0.03
-hue_variation_random = 0.22
+[node name="Avalanche" parent="Bodies" instance=ExtResource( 18 )]
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -200,24 +168,7 @@ autostart = true
 
 [node name="Snow" type="CanvasLayer" parent="."]
 
-[node name="Snowflakes" type="CPUParticles2D" parent="Snow"]
-position = Vector2( 160, -57 )
-amount = 320
-lifetime = 5.0
-preprocess = 5.0
-randomness = 1.0
-emission_shape = 2
-emission_rect_extents = Vector2( 320, 32 )
-direction = Vector2( -1, 1 )
-gravity = Vector2( 0, 0 )
-initial_velocity = 96.0
-angular_velocity = 1.0
-angular_velocity_random = 1.0
-angular_velocity_curve = SubResource( 2 )
-angle = 45.0
-scale_amount = 2.0
-scale_amount_random = 1.0
-scale_amount_curve = SubResource( 3 )
+[node name="Snowflakes" parent="Snow" instance=ExtResource( 17 )]
 
 [node name="GUI" type="MarginContainer" parent="." groups=[
 "gui",
@@ -225,37 +176,15 @@ scale_amount_curve = SubResource( 3 )
 anchor_left = 0.05
 anchor_top = 0.061
 anchor_right = 0.95
-anchor_bottom = 0.192
+anchor_bottom = 0.375
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="GUI"]
-margin_bottom = 42.0
-size_flags_horizontal = 0
-
-[node name="HealthBar" type="TextureProgress" parent="GUI/CenterContainer"]
-visible = false
-margin_left = -60.0
-margin_top = 12.0
-margin_right = 60.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 0
-max_value = 10.0
-step = 0.25
-value = 10.0
-texture_under = ExtResource( 14 )
-texture_progress = ExtResource( 13 )
-stretch_margin_left = 11
-stretch_margin_top = 11
-stretch_margin_right = 11
-stretch_margin_bottom = 11
-
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
 margin_right = 288.0
-margin_bottom = 42.0
+margin_bottom = 56.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_right = 288.0
@@ -283,15 +212,16 @@ custom_fonts/font = ExtResource( 12 )
 text = "0"
 
 [node name="HumansPlayer" type="AnimationPlayer" parent="GUI/VBoxContainer/HBoxContainer"]
-anims/Eat = SubResource( 4 )
+anims/Eat = SubResource( 2 )
 
 [node name="HealthContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+visible = false
 margin_top = 23.0
 margin_right = 288.0
 margin_bottom = 42.0
 
 [node name="Health" type="Label" parent="GUI/VBoxContainer/HealthContainer"]
-margin_right = 270.0
+margin_right = 276.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -304,15 +234,40 @@ __meta__ = {
 }
 
 [node name="HealthCount" type="Label" parent="GUI/VBoxContainer/HealthContainer"]
-margin_left = 274.0
+margin_left = 280.0
 margin_right = 288.0
 margin_bottom = 19.0
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 12 )
-text = "10"
+text = "6"
 
-[node name="HealthPlayer" type="AnimationPlayer" parent="GUI/VBoxContainer/HealthContainer"]
-anims/Health = SubResource( 5 )
+[node name="HealthBarContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_top = 23.0
+margin_right = 288.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 19.4152, 83.0101 )
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HealthBarContainer"]
+margin_bottom = 14.0
+size_flags_horizontal = 2
+size_flags_vertical = 1
+
+[node name="HealthBar" type="TextureProgress" parent="GUI/VBoxContainer/HealthBarContainer"]
+margin_left = 228.0
+margin_right = 288.0
+margin_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_pivot_offset = Vector2( 29.8871, 1.79433 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
+max_value = 6.0
+value = 6.0
+texture_under = ExtResource( 19 )
+texture_progress = ExtResource( 20 )
+
+[node name="HealthPlayer" type="AnimationPlayer" parent="GUI/VBoxContainer/HealthBarContainer/HealthBar"]
+anims/Health = SubResource( 3 )
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 position = Vector2( 160, 90 )
@@ -320,6 +275,7 @@ position = Vector2( 160, 90 )
 [node name="Transition" type="CanvasLayer" parent="."]
 
 [node name="WhiteRect" type="ColorRect" parent="Transition"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
